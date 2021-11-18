@@ -2,6 +2,7 @@ import sys
 # PDF Extraction library
 import pdfplumber
 
+# Using Python 3.10
 
 
 class main():
