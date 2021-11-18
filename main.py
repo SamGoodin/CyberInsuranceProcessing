@@ -1,10 +1,14 @@
 import sys
+# PDF Extraction library
 import pdfplumber
+
+
 
 class main():
     
     def __init__(self):
         print("Hello world")
+        print(self.scrape_pdf('cyber-insurance-policy-1.pdf'))
         
     def scrape_pdf(self, pdf_link, encoding='utf-8', page_num=None):
         # pdf_link is location of pdf
@@ -17,10 +21,11 @@ class main():
             except Exception as e:
                 print(e)
         else:
-            pdf_text = None
+            pdf_text = ""
             for page in pdf.pages:
                 try:
-                    pdf_text += page.extract_text().encode(encoding)
+                    pdf_text += page.extract_text()
+                    #pdf_text += page.extract_text().encode(encoding)
                 except Exception as e:
                     print(e)
             return pdf_text
