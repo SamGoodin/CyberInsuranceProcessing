@@ -1,7 +1,8 @@
 # CyberInsuranceProcessing
 Capstone Fall 2021
 
-**Dependencies** 
+Dependencies
+--------------
 Python 3.10
 pdfplumber 0.5.28
 pyodbc 4.0.32
