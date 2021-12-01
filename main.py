@@ -1,36 +1,21 @@
-import sys
-# PDF Extraction library
-import pdfplumber
+from pdf_scraper import pdf_scraper
+import glob
 
-# Using Python 3.10
-
+# Using Python 3.10, pdfplumber 0.5.28
 
 class main():
-    
-    def __init__(self):
-        print("Hello world")
-        print(self.scrape_pdf('cyber-insurance-policy-1.pdf'))
+
+    def __init__(self):   
+        # Returns a list of all pdf files in current directory
+        pdf_files = glob.glob("*.pdf")
+
+        # Pass the path to the pdf scraper
+        # Assuming we want the first pdf file in the directory
+        scraper = pdf_scraper(pdf_files[0], True)
+        scraper.extract_all_tables()
         
-    def scrape_pdf(self, pdf_link, encoding='utf-8', page_num=None):
-        # pdf_link is location of pdf
-        # encoding is default utf-8, can be changed but best results with utf-8
-        # page_num is if you want a specific page, else the entire pdf is returned
-        pdf = pdfplumber.open(pdf_link)
-        if page_num:
-            try:
-                return pdf.pages[page_num].extract_text().encode(encoding)
-            except Exception as e:
-                print(e)
-        else:
-            pdf_text = ""
-            for page in pdf.pages:
-                try:
-                    pdf_text += page.extract_text()
-                    #pdf_text += page.extract_text().encode(encoding)
-                except Exception as e:
-                    print(e)
-            return pdf_text
+
 
 
 if __name__ == '__main__':
-    main()
+    app = main()
