@@ -3,7 +3,7 @@ Capstone Fall 2021
 
 Dependencies
 --------------
-Python 3.10
+Python 3.10<br />
 pdfplumber 0.5.28
 pyodbc 4.0.32
 
