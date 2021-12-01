@@ -99,9 +99,3 @@ class main:
             Endorsement_Effective_End_Date=?
             Policy_ID=Get from policy
         """
-        
-
-
-
-if __name__ == '__main__':
-    app = main()
