@@ -10,6 +10,7 @@ class main:
         #------------------Initialize the database----------------------------------
         self.database = database()
 
+
         #self.database.add_client(2, "Sam", "Indy", "Software", "Music", 1000.00, 27, 1)
         #self.database.get_all_clients()
 
@@ -30,7 +31,43 @@ class main:
         # Pass the path to the pdf scraper
         # Assuming we want the first pdf file in the directory
         self.scraper = pdf_scraper(pdf_files[0], print=False)
-        #data = self.scraper.extract_all_tables()
+        data = self.scraper.extract_all_tables()
+
+        for k,v in data.items():
+            print(k, v)
+
+        # Add scraped PDF data to database
+        """
+        Client:
+            Client_Name=Company_Name
+            Client_Location=Company_Name after 'company'
+            Client_Type_of_Business=?
+            Client_Industry=?
+            Client_Annual_Revenue=?
+            Client_Num_of_Employees=?
+            Policy_ID=Get from policy table based on Policy_Number
+
+        Policy:
+            Policy_Agg_Limit=Policy Aggregate Limit of Insurance
+            Policy_Annual_Premium=Annual Premium
+            Policy_Fees=Fees/Assessment
+            Policy_Deductible=Policy Deductible Amount
+            Policy_SE_Limit=Social Engineering Coverage Limit
+            Polocy_SE_Deductible=Social Engineering Deductible
+            Endorsement_ID=Get from endorsement table based on ?
+        
+        Sublimit:
+            Sublimit_Name=String of CoverageAggregate Sublimit(s) of Insurance
+            Sublimit_Coverage=Total of $$ values in name
+            Policy_ID=Get from policy
+
+        Endorsement:
+        Faulty pdf so can't extract endorsements
+            Endorsement_Premium=?
+            Endorsement_Effective_Start_Date=?
+            Endorsement_Effective_End_Date=?
+            Policy_ID=Get from policy
+        """
         
 
 
