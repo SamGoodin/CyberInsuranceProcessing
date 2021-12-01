@@ -14,7 +14,7 @@ class main:
         self.database.add_client(2, "Sam", "Indy", "Software", "Music", 1000.00, 27, 1)
         #self.database.get_all_clients()
 
-        self.database.add_sublimit(2, "Name", 12345.1, 12)
+        self.database.add_sublimit(2, "Name", 12)
         #self.database.get_all_sublimits()
 
         self.database.add_policy(2, 'Example', 50, 100, 50, 25, 1000, 50, 2)
@@ -33,16 +33,40 @@ class main:
         self.scraper = pdf_scraper(pdf_files[0], print=False)
         data = self.scraper.extract_all_tables()
 
+        # Output key value pair
         for k,v in data.items():
             print(k, v)
 
-        # Add scraped PDF data to database
-        clientname = data['Company Name'].split("company")[0] + "company"
-        print(clientname)
-        clientloc = data['Company Name'].split("company")[1]
-        print(clientloc)
-        
+        # Get all the pieces of data we need from data and format accordingly
+        clientname = data['Company Name'].split("company")[0].replace("  ", "") + "company"
+        clientloc = data['Company Name'].split("company")[1].replace(" ", "", 1)
+        policy_id = 100
+        policynumber = data['Policy Number'].replace(" ", "")
+        agglimit = data['Policy Aggregate Limit of Insurance'].replace("  $", "")
+        if "," in agglimit:
+            agglimit = agglimit.replace(",", "")
+        premium = data['Annual Premium'].replace("  $", "")
+        if "," in premium:
+            premium = premium.replace(",", "")
+        fees = data['Fees/Assessment'].replace(" $", "")
+        deductible = data['Policy Deductible Amount'].replace("  $", "")
+        if "," in deductible:
+            deductible = deductible.replace(",", "")
+        selimit = data['Social Engineering Coverage Limit'].replace("  $", "")
+        if "," in selimit:
+            selimit = selimit.replace(",", "")
+        sedeductible = data['Social Engineering Deductible'].replace("  $", "")
+        if "," in sedeductible:
+            sedeductible = sedeductible.replace(",", "")
+        endorsementid = 100
+        sublimitname = data['CoverageAggregate Sublimit(s) of Insurance']
+        sublimitname = sublimitname.replace(" Percentage LimitDollarsInsuring Agreement ", "")
 
+        # Add scraped PDF data to database
+        self.database.add_client(10, clientname, clientloc, "", "", -1, -1, policy_id)
+        self.database.add_policy(policy_id, policynumber, agglimit, premium, fees, deductible, selimit, sedeductible, endorsementid)
+        self.database.add_sublimit(10, sublimitname, policy_id)
+        
         """
         Client:
             Client_Name=Company_Name
@@ -65,7 +89,6 @@ class main:
         
         Sublimit:
             Sublimit_Name=String of CoverageAggregate Sublimit(s) of Insurance
-            Sublimit_Coverage=Total of $$ values in name
             Policy_ID=Get from policy
 
         Endorsement:

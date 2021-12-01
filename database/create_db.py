@@ -24,7 +24,7 @@ c.execute("""CREATE TABLE Policy(
             Policy_Number TEXT,
             Policy_Agg_Limit INTEGER,
             Policy_Annual_Premium INTEGER,
-            Policy_Fees INTEGER,
+            Policy_Fees TEXT,
             Policy_Deductible INTEGER,
             Policy_Social_Engineering_Limit INTEGER,
             Policy_Social_Engineering_Deductible INTEGER,
@@ -35,7 +35,6 @@ c.execute("""CREATE TABLE Policy(
 c.execute("""CREATE TABLE Sublimit(
             Sublimit_ID INTEGER,
             Sublimit_Name TEXT,
-            Sublimit_Coverage INTEGER,
             Policy_ID INTEGER
             )""")
 

@@ -40,19 +40,21 @@ class database:
         self.conn.commit()
 
     def add_policy(self, ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID):
+        print(ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID)
+        print(type(ID), type(policy_number), type(limit), type(premium), type(fees), type(deductible), type(se_limit), type(se_deductible), type(endorsementsID))
         self.cursor.execute("""INSERT INTO Policy 
         (Policy_ID,Policy_Number,Policy_Agg_Limit,Policy_Annual_Premium,Policy_Fees,Policy_Deductible,Policy_Social_Engineering_Limit,Policy_Social_Engineering_Deductible,Endorsement_ID) 
         VALUES 
-        ({},'{}',{},{},{},{},{},{},{});
-        """.format(ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID))
+        ({},'{}',{},{},'{}',{},{},{},{});
+        """.format(ID, policy_number, int(limit), int(premium), fees, int(deductible), int(se_limit), int(se_deductible), endorsementsID))
         self.conn.commit()
 
-    def add_sublimit(self, ID, name, coverage, policyID):
+    def add_sublimit(self, ID, name, policyID):
         self.cursor.execute("""INSERT INTO Sublimit 
-        (Sublimit_ID,Sublimit_Name,Sublimit_Coverage,Policy_ID) 
+        (Sublimit_ID,Sublimit_Name,Policy_ID) 
         VALUES 
-        ({},'{}',{},{});
-        """.format(ID, name, coverage, policyID))
+        ({},'{}',{});
+        """.format(ID, name, policyID))
         self.conn.commit()
 
     def get_client(self, ID):
