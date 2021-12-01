@@ -26,6 +26,7 @@ class pdf_scraper():
         with pdfplumber.open(self.pdf_path) as pdf:
             # Loop through all the pages in the pdf
             for page_num, page in enumerate(pdf.pages):
+                print("Scraping tables from page {} of {}".format(page_num, self.pdf_path))
                 # Extract all tables from the page
                 page_data = page.extract_tables()
 
@@ -42,9 +43,12 @@ class pdf_scraper():
                         # Ignoring cases we don't need
                         if len(split) == 2:
                             data[split[0]] = split[1]
+        print("Finished scraping tables from all pages in {}\n".format(self.pdf_path))
         pdf.close()
+
         # Output the data if selected
         if self.print:
             for k,v in data.items():
                 print(k, v)
+        
         return data
