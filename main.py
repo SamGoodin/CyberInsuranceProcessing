@@ -99,12 +99,3 @@ class main:
             Endorsement_Effective_End_Date=?
             Policy_ID=Get from policy
         """
-        
-
-
-
-if __name__ == '__main__':
-    # First, check that the required packages are installed
-    from requirements import requirements
-
-    app = main()

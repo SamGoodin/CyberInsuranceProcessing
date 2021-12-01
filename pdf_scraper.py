@@ -16,7 +16,6 @@ class pdf_scraper():
                 data += page_data
                 if print:
                     print("------- Page {}-----------".format((page_num + 1)))
-                    print(page_data)
         pdf.close()
         return data
 
