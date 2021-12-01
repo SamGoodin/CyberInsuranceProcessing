@@ -40,8 +40,6 @@ class database:
         self.conn.commit()
 
     def add_policy(self, ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID):
-        print(ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID)
-        print(type(ID), type(policy_number), type(limit), type(premium), type(fees), type(deductible), type(se_limit), type(se_deductible), type(endorsementsID))
         self.cursor.execute("""INSERT INTO Policy 
         (Policy_ID,Policy_Number,Policy_Agg_Limit,Policy_Annual_Premium,Policy_Fees,Policy_Deductible,Policy_Social_Engineering_Limit,Policy_Social_Engineering_Deductible,Endorsement_ID) 
         VALUES 
