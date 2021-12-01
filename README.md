@@ -5,7 +5,7 @@ Dependencies
 --------------
 Python v3.10<br />
 pdfplumber v0.5.28<br />
-pyodbc v4.0.32
+SQLite3
 
 Application
 --------------
