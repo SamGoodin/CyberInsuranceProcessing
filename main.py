@@ -11,16 +11,16 @@ class main:
         self.database = database()
 
 
-        #self.database.add_client(2, "Sam", "Indy", "Software", "Music", 1000.00, 27, 1)
+        self.database.add_client(2, "Sam", "Indy", "Software", "Music", 1000.00, 27, 1)
         #self.database.get_all_clients()
 
-        #self.database.add_sublimit(2, "Name", 12345.1, 12)
+        self.database.add_sublimit(2, "Name", 12345.1, 12)
         #self.database.get_all_sublimits()
 
-        #self.database.add_policy(2, 50, 100, 50, 25, 1000, 50, 2)
+        self.database.add_policy(2, 'Example', 50, 100, 50, 25, 1000, 50, 2)
         #self.database.get_all_policies()
 
-        #self.database.add_endorsement(50, 20000, '1-1-2021', '12-31-2022', 12)
+        self.database.add_endorsement(50, 20000, '1-1-2021', '12-31-2022', 12)
         #self.database.get_all_endorsements()
 
         #----------------------------------------------------------------------------
@@ -37,6 +37,12 @@ class main:
             print(k, v)
 
         # Add scraped PDF data to database
+        clientname = data['Company Name'].split("company")[0] + "company"
+        print(clientname)
+        clientloc = data['Company Name'].split("company")[1]
+        print(clientloc)
+        
+
         """
         Client:
             Client_Name=Company_Name
@@ -48,6 +54,7 @@ class main:
             Policy_ID=Get from policy table based on Policy_Number
 
         Policy:
+            Policy_Number=Policy Number
             Policy_Agg_Limit=Policy Aggregate Limit of Insurance
             Policy_Annual_Premium=Annual Premium
             Policy_Fees=Fees/Assessment

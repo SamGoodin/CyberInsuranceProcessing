@@ -21,6 +21,7 @@ c.execute("""CREATE TABLE Client (
 #Generates Policy Table
 c.execute("""CREATE TABLE Policy(
             Policy_ID INTEGER,
+            Policy_Number TEXT,
             Policy_Agg_Limit INTEGER,
             Policy_Annual_Premium INTEGER,
             Policy_Fees INTEGER,

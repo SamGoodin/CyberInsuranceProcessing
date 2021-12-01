@@ -39,12 +39,12 @@ class database:
         """.format(ID, endorsement, start_date, end_date, policyid))
         self.conn.commit()
 
-    def add_policy(self, ID, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID):
+    def add_policy(self, ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID):
         self.cursor.execute("""INSERT INTO Policy 
-        (Policy_ID,Policy_Agg_Limit,Policy_Annual_Premium,Policy_Fees,Policy_Deductible,Policy_Social_Engineering_Limit,Policy_Social_Engineering_Deductible,Endorsement_ID) 
+        (Policy_ID,Policy_Number,Policy_Agg_Limit,Policy_Annual_Premium,Policy_Fees,Policy_Deductible,Policy_Social_Engineering_Limit,Policy_Social_Engineering_Deductible,Endorsement_ID) 
         VALUES 
-        ({},{},{},{},{},{},{},{});
-        """.format(ID, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID))
+        ({},'{}',{},{},{},{},{},{},{});
+        """.format(ID, policy_number, limit, premium, fees, deductible, se_limit, se_deductible, endorsementsID))
         self.conn.commit()
 
     def add_sublimit(self, ID, name, coverage, policyID):
