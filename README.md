@@ -4,7 +4,7 @@ Capstone Fall 2021
 Dependencies
 --------------
 Python 3.10<br />
-pdfplumber 0.5.28
+pdfplumber 0.5.28<br />
 pyodbc 4.0.32
 
 Application
